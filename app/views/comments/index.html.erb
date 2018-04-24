@@ -1,0 +1,11 @@
+<% provide(:title, 'All comments') %>
+<h1>All comments</h1>
+
+<ul class="users">
+  <% @comments.each do |comment| %>
+    <%= render comment %>
+  <% end %>
+</ul>
+
+<%= paginate @comments %>
+<%= page_entries_info @comments %>

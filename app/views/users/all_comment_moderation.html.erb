@@ -1,0 +1,28 @@
+<% provide(:title, 'All comments') %>
+<h1>All comments</h1>
+
+<ul class="users">
+  <% @comments.each do |comment| %>
+    <li id="micropost-<%= comment.id %>">
+    <%= link_to gravatar_for(comment.user, size: 50), comment.user%>
+    <span class="user"><%= link_to comment.user.name, comment.user %></span>
+    <br/>
+    <span class="content">
+        <%= comment.info %>
+    </span>
+    <br/>
+    <span class="timestamp">
+        Posted <%= time_ago_in_words(comment.created_at) %> ago.
+        <% if current_user.admin? %>
+        | <%= link_to "delete", comment, method: :delete,
+                                data: { confirm: "You sure?" } %>
+        | <%= link_to "moderation", {:controller => "users",
+                                :action => "moderation", :id => comment.id }%>
+        <% end %>
+    </span>
+    </li>
+  <% end %>
+</ul>
+    
+<%= paginate @comments %>
+<%= page_entries_info @comments %>

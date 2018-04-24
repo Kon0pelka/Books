@@ -35,6 +35,7 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
 gem 'faker'
 gem 'kaminari'
+gem 'carrierwave'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

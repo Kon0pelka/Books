@@ -9,3 +9,10 @@
     </section>
   </aside>
 </div>
+<div class="row">
+  <% @books.each do |book| %>
+  <%= render book %>
+  <% end %>
+</div>
+
+

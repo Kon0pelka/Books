@@ -1,0 +1,9 @@
+<div class="row">
+    <% @books.each do |book| %>
+    <%= render book %>
+    <% end %>
+</div>
+
+
+<%= paginate @books %>
+<%= page_entries_info @books %>

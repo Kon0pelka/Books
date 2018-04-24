@@ -1,0 +1,20 @@
+<div class="col-sm-6 col-md-3 col-lg-3">
+    <div class="thumbnail">
+    <img class="picture" src=<%= book.picture %> alt="Picture" >
+        <div class="caption">
+            <h2><%= book.name %></h2>
+            <p class="book"><%= book.autor.first_name %> <%= book.autor.second_name %></p>
+            <div class="row">
+                <%= link_to "Button", {:controller => "books", :action => "show", :id => book.id },
+                                                             class: "btn btn-primary col-md-6"%>
+                <% if(InterimTable.where(book_id:book.id, user_id:current_user.id).empty?) %>
+                    <%= link_to "+", {:controller => "users", :action => "add_book", :id => book.id }, 
+                                                        class: "btn btn-primary col-md-6"%>      
+                <% else %>
+                    <%= link_to "-", {:controller => "users", :action => "add_book", :id => book.id }, 
+                                                        class: "btn btn-primary col-md-6"%>   
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

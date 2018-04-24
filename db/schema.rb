@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412094901) do
+ActiveRecord::Schema.define(version: 20180424161706) do
+
+  create_table "autors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "second_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.string "picture"
+    t.text "description"
+    t.integer "autor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["autor_id", "created_at"], name: "index_books_on_autor_id_and_created_at"
+    t.index ["autor_id"], name: "index_books_on_autor_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "book_id"
+    t.integer "user_id"
+    t.boolean "activ", default: false
+    t.index ["book_id"], name: "index_comments_on_book_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "interim_tables", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id", "user_id"], name: "index_interim_tables_on_book_id_and_user_id", unique: true
+    t.index ["book_id"], name: "index_interim_tables_on_book_id"
+    t.index ["user_id"], name: "index_interim_tables_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
