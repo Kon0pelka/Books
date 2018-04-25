@@ -18,8 +18,4 @@ class AutorsController < ApplicationController
     def autor_params
         params.require(:autor).permit(:second_name, :first_name)
     end
-
-    def admin_user
-        redirect_to(root_url) unless current_user.admin?
-    end
 end
